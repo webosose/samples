@@ -1,0 +1,9 @@
+{
+  "id": "com.sample.waylandegl",
+  "version": "0.0.1",
+  "vendor": "My Company",
+  "type": "native",
+  "main": "wayland_egl",
+  "title": "wayland_egl",
+  "icon": "icon.png"
+}
