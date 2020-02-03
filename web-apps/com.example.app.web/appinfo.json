@@ -1,0 +1,10 @@
+{
+    "id": "com.example.app.web",
+    "version": "0.0.1",
+    "vendor": "My Company",
+    "type": "web",
+    "main": "index.html",
+    "title": "Web app sample",
+    "icon": "icon.png",
+    "requiredPermissions" : ["time"]
+}

@@ -1,0 +1,11 @@
+{
+    "id": "com.example.app.nativeqt",
+    "version": "0.0.1",
+    "vendor": "My Company",
+    "type": "native",
+    "main": "nativeqt",
+    "title": "Native qt App",
+    "icon": "icon.png",
+    "requiredPermissions" : ["applications"],
+    "nativeLifeCycleInterfaceVersion": 2
+}

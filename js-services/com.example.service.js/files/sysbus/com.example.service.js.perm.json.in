@@ -1,0 +1,5 @@
+{
+    "com.example.service.js": [
+        "settings.read", "activities.manage"
+    ]
+}

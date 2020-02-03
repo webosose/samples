@@ -1,0 +1,4 @@
+[D-BUS Service]
+Name=com.example.service.js
+Exec=@WEBOS_INSTALL_BINDIR@/run-js-service -n @WEBOS_INSTALL_WEBOS_SERVICESDIR@/com.example.service.js
+Type=dynamic

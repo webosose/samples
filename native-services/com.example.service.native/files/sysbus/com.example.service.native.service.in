@@ -1,0 +1,4 @@
+[D-BUS Service]
+Name=com.example.service.native
+Exec=@WEBOS_INSTALL_SBINDIR@/com.example.service.native
+Type=static

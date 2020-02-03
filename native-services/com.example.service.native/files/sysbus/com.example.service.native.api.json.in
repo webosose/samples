@@ -1,0 +1,5 @@
+{
+    "com.example.service.native.group":[
+        "com.example.service.native/hello"
+    ]
+}

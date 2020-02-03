@@ -1,0 +1,15 @@
+{
+    "exeName":"@WEBOS_INSTALL_SBINDIR@/com.example.service.native",
+    "type": "regular",
+    "allowedNames": [
+        "com.example.service.native"
+    ],
+    "permissions": [
+        {
+            "service":"com.example.service.native",
+            "outbound":[
+                "*"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+{
+    "com.example.service.js.group": [
+        "com.example.service.js/*"
+    ]
+}

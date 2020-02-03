@@ -1,0 +1,15 @@
+{
+    "appId":"com.example.service.js",
+    "type": "regular",
+    "allowedNames": [
+        "com.example.service.js"
+    ],
+    "permissions": [
+        {
+            "service":"com.example.service.js",
+            "outbound":[
+                "*"
+            ]
+        }
+    ]
+}
