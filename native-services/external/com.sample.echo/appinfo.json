@@ -1,0 +1,10 @@
+{
+  "id": "com.sample.echo",
+  "version": "0.0.1",
+  "vendor": "LG Electronics, Inc.",
+  "type": "web",
+  "main": "index.html",
+  "title": "Native Service Test Application",
+  "icon": "icon.png",
+  "iconColor": "#FFFFFF"
+}

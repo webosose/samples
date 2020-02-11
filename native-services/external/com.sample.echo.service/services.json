@@ -1,0 +1,10 @@
+{
+  "id" : "com.sample.echo.service",
+  "description":"Native echo service",
+  "engine":"native",
+  "executable":"echo_service",
+  "services": [ {
+    "name": "com.sample.echo.service",
+    "description": "Native echo service"
+  }]
+}
