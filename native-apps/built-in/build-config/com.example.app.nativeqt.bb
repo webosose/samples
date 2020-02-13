@@ -1,3 +1,5 @@
+# Copyright (c) 2020 LG Electronics, Inc.
+
 SUMMARY = "Native Qt App"
 SECTION = "webos/apps"
 LICENSE = "Apache-2.0"
