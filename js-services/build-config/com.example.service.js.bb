@@ -1,3 +1,5 @@
+# Copyright (c) 2020 LG Electronics, Inc.
+
 SUMMARY = "JS Service Sample"
 AUTHOR = "Author's name <Author's e-mail>"
 LICENSE = "Apache-2.0"
