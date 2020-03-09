@@ -26,6 +26,9 @@ int main(int argc, char **argv)
     QGuiApplication app(argc, argv);
     PmLogInfo(getPmLogContext(), "MAIN_ARGV1", 1, PMLOGKFV("argv", "%s", argv[1]),  " ");
 
+    QString displayId = (getenv("DISPLAY_ID") ? getenv("DISPLAY_ID") : "0");
+    PmLogInfo(getPmLogContext(), "DISPLAY", 1, PMLOGKFV("Id", "%s", displayId.toStdString().c_str()),  " ");
+
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect screenGeometry = screen->geometry();
     MyOpenGLWindow window;
@@ -35,7 +38,8 @@ int main(int argc, char **argv)
     ServiceRequest s_request("com.example.app.nativeqt");
     s_request.registerApp();
 
-    QGuiApplication::platformNativeInterface()->setWindowProperty(window.handle(), QStringLiteral("appId"), QStringLiteral("com.example.app.nativeqt"));
+    QGuiApplication::platformNativeInterface()->setWindowProperty(window.handle(), "appId", "com.example.app.nativeqt");
+    QGuiApplication::platformNativeInterface()->setWindowProperty(window.handle(), "displayAffinity", displayId);
 
     return app.exec();
 }

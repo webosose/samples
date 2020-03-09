@@ -27,6 +27,7 @@ WebOSWindow {
     appId: "com.example.app.qml"
     title: "QML app"
     color: "lightblue"
+    displayAffinity: params["displayAffinity"]
 
     Text {
         id: mainText
