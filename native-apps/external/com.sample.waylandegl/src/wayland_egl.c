@@ -149,8 +149,9 @@ static void getWaylandServer()
         exit(1);
     }
     wl_webos_shell_surface_add_listener(g_pstWebosShellSurface, &s_pstWebosShellListener, g_pstDisplay);
+    wl_webos_shell_surface_set_property(g_pstWebosShellSurface, "appId", (getenv("APP_ID") ? getenv("APP_ID") : "com.sample.waylandegl"));
     // for secondary display, set the last parameter as 1
-    wl_webos_shell_surface_set_property(g_pstWebosShellSurface, "displayAffinity", "0");
+    wl_webos_shell_surface_set_property(g_pstWebosShellSurface, "displayAffinity", (getenv("DISPLAY_ID") ? getenv("DISPLAY_ID") : "0"));
 }
 
 static void createWindow()
