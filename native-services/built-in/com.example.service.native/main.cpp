@@ -82,8 +82,8 @@ static bool cbGetTime(LSHandle *sh, LSMessage *msg, void *user_data)
     bool successCallback = response["returnValue"].asBool();
     if (successCallback)
     {
-        uint64_t utc= response["utc"].asNumber<int64_t>();
-        PmLogInfo(getPmLogContext(), "GETTIME_CALLBACK", 1, PMLOGKFV("UTC : ", "%d", utc),  " ");
+        int64_t utc= response["utc"].asNumber<int64_t>();
+        PmLogInfo(getPmLogContext(), "GETTIME_CALLBACK", 1, PMLOGKFV("UTC", "%lld", utc),  " ");
     }
 
     return true;
