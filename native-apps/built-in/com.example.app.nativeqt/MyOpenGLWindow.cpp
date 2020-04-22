@@ -55,6 +55,7 @@
 
 MyOpenGLWindow::MyOpenGLWindow(QWindow *parent)
     : QWindow(parent)
+    , m_device(nullptr)
 {
     setSurfaceType(QWindow::OpenGLSurface);
     create();

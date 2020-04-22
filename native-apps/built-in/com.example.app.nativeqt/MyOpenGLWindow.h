@@ -72,6 +72,7 @@ public:
 protected:
     void exposeEvent(QExposeEvent *event) override;
 
+private:
     QOpenGLContext *m_context;
     QOpenGLPaintDevice *m_device;
 };
