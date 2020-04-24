@@ -34,7 +34,7 @@ WebOSWindow {
         anchors.centerIn: parent
         font.family: "Helvetica"
         font.pointSize: 50
-        text: "Hello, QML Appplication!!"
+        text: "Hello, QML Application!!"
     }
 
     property var launchParams: params
