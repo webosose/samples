@@ -29,9 +29,6 @@ include_directories(${WLCLIENT_INCLUDE_DIRS})
 pkg_check_modules(WLEGL REQUIRED wayland-egl)
 include_directories(${WLEGL_INCLUDE_DIRS})
 
-pkg_check_modules(EGL REQUIRED egl)
-include_directories(${EGL_INCLUDE_DIRS})
-
 pkg_check_modules(GLESV2 REQUIRED glesv2)
 include_directories(${GLESV2_INCLUDE_DIRS})
 
@@ -48,7 +45,7 @@ set_target_properties(${BIN_NAME} PROPERTIES LINKER_LANGUAGE C)
 target_link_libraries (${BIN_NAME}
         ${WLCLIENT_LDFLAGS}
         ${WLEGL_LDFLAGS}
-        ${EGL_LDFLAGS}
+        -lEGL
         ${GLESV2_LDFLAGS}
 )
 

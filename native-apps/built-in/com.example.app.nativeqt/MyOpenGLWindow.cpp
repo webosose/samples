@@ -53,8 +53,8 @@
 #include <QtGui/QOpenGLPaintDevice>
 #include <QtGui/QPainter>
 
-MyOpenGLWindow::MyOpenGLWindow(QWindow *parent)
-    : QWindow(parent)
+MyOpenGLWindow::MyOpenGLWindow(QRect rect)
+    : m_windowRect(rect)
     , m_device(nullptr)
 {
     setSurfaceType(QWindow::OpenGLSurface);
@@ -82,7 +82,7 @@ void MyOpenGLWindow::render()
     m_device->setSize(size() * devicePixelRatio());
     m_device->setDevicePixelRatio(devicePixelRatio());
 
-    QRect rect = geometry();
+    QRect rect = QRect(0, 0, m_windowRect.width(), m_windowRect.height());
     QPainter painter(m_device);
 
     QFont font = painter.font();

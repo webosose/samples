@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect screenGeometry = screen->geometry();
-    MyOpenGLWindow window;
+    MyOpenGLWindow window(screenGeometry);
     window.resize(screenGeometry.width(), screenGeometry.height());
     window.show();
 

@@ -21,18 +21,17 @@ var service = new Service("com.example.service.js");
 
 // A method that always returns the same value
 service.register("hello", function(message) {
+    console.log("[com.example.service.js]", "SERVICE_METHOD_CALLED:hello");
     message.respond({
         answer: "Hello, JS Service!!"
     });
 });
 
 // Call another service
-service.register("locale", function(message) {
-    service.call("luna://com.webos.settingsservice/getSystemSettings", {"key":"localeInfo"}, function(m2) {
-        console.log("[com.example.service.js]", "LOCALE_CALLBACK : get locale response");
-        var response = "You appear to have your locale set to: " + m2.payload.settings.localeInfo.locales.UI;
-        message.respond({
-            message: response
-        });
+service.register("time", function(message) {
+    service.call("luna://com.webos.service.systemservice/clock/getTime", {}, function(m2) {
+        console.log("[com.example.service.js]", "SERVICE_METHOD_CALLED:com.webos.service.systemservice/clock/getTime");
+        const response = "You appear to have your UTC set to: " + m2.payload.utc;
+        message.respond({message: response});
     });
 });

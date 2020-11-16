@@ -64,7 +64,7 @@ class MyOpenGLWindow : public QWindow, protected QOpenGLFunctions
 {
     Q_OBJECT
 public:
-    explicit MyOpenGLWindow(QWindow *parent = 0);
+    MyOpenGLWindow(QRect rect);
     ~MyOpenGLWindow();
 
     virtual void render();
@@ -73,6 +73,7 @@ protected:
     void exposeEvent(QExposeEvent *event) override;
 
 private:
+    QRect m_windowRect;
     QOpenGLContext *m_context;
     QOpenGLPaintDevice *m_device;
 };
