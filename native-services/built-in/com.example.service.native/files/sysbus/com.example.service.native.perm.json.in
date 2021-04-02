@@ -1,6 +1,6 @@
 {
     "com.example.service.native":[
-        "time"
+        "time.query"
     ]
 }
 

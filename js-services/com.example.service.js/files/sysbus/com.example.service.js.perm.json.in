@@ -1,5 +1,5 @@
 {
     "com.example.service.js": [
-        "time", "activities.manage"
+        "time.query", "activity.operation"
     ]
 }

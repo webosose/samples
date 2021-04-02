@@ -6,6 +6,6 @@
     "main": "nativeqt",
     "title": "Native qt App",
     "icon": "icon.png",
-    "requiredPermissions" : ["applications"],
+    "requiredPermissions" : ["application.operation"],
     "nativeLifeCycleInterfaceVersion": 2
 }
