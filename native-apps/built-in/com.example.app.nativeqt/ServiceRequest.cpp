@@ -33,11 +33,12 @@ static std::string convertJsonToString(const pbnjson::JValue json)
     return pbnjson::JGenerator::serialize(json, pbnjson::JSchemaFragment("{}"));
 }
 
-ServiceRequest::ServiceRequest(std::string appId)
+ServiceRequest::ServiceRequest(std::string appId, QWindow &window)
     : m_mainLoop(g_main_loop_new(nullptr, false))
     , m_serviceHandle(nullptr)
 {
     m_appId = appId;
+    m_window = &window;
     m_serviceHandle = acquireHandle();
 }
 
@@ -83,7 +84,7 @@ void ServiceRequest::clearHandle()
     }
 }
 
-static bool registerAppCallback(LSHandle* sh, LSMessage* msg, void* ctx)
+static bool registerAppCallback(LSHandle* sh, LSMessage* msg, void* context)
 {
     PmLogInfo(getPmLogContext(), "REGISTER_CALLBACK", 1, PMLOGJSON("payload", LSMessageGetPayload(msg)),  " ");
 
@@ -100,6 +101,11 @@ static bool registerAppCallback(LSHandle* sh, LSMessage* msg, void* ctx)
         }
         else if (event == "relaunch")
         {
+            //relaunch screen
+            if (context != nullptr)
+            {
+                ((ServiceRequest*)context)->m_window->showFullScreen();
+            }
             //handle "relaunch" event
             if (response.hasKey("parameters"))
             {
@@ -136,7 +142,7 @@ void ServiceRequest::registerApp()
                 "luna://com.webos.service.applicationmanager/registerApp",
                 "{}",
                 registerAppCallback,
-                NULL,
+                this,
                 NULL,
                 &lserror))
     {

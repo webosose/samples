@@ -35,7 +35,7 @@ int main(int argc, char **argv)
     window.resize(screenGeometry.width(), screenGeometry.height());
     window.show();
 
-    ServiceRequest s_request("com.example.app.nativeqt");
+    ServiceRequest s_request("com.example.app.nativeqt", window);
     s_request.registerApp();
 
     QGuiApplication::platformNativeInterface()->setWindowProperty(window.handle(), "appId", "com.example.app.nativeqt");

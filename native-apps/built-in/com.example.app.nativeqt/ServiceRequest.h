@@ -22,6 +22,7 @@
 #include <luna-service2/lunaservice.h>
 #include <pbnjson.hpp>
 #include <PmLog.h>
+#include <QtGui/QWindow>
 
 static PmLogContext getPmLogContext()
 {
@@ -36,10 +37,11 @@ static PmLogContext getPmLogContext()
 class ServiceRequest
 {
 public:
-    ServiceRequest(std::string appId);
+    ServiceRequest(std::string appId, QWindow &window);
     virtual ~ServiceRequest();
     LSHandle* getHandle() const { return m_serviceHandle; }
     void registerApp();
+    QWindow* m_window;
 
 protected:
     LSHandle* acquireHandle();
