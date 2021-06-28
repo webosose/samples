@@ -49,9 +49,9 @@
 ****************************************************************************/
 
 #include "MyOpenGLWindow.h"
-#include <QtGui/QOpenGLContext>
-#include <QtGui/QOpenGLPaintDevice>
-#include <QtGui/QPainter>
+#include <QOpenGLContext>
+#include <QOpenGLPaintDevice>
+#include <QPainter>
 
 MyOpenGLWindow::MyOpenGLWindow(QRect rect)
     : m_windowRect(rect)
@@ -90,7 +90,7 @@ void MyOpenGLWindow::render()
     font.setStyleHint(QFont::Helvetica, QFont::PreferAntialias);
 
     painter.setFont(font);
-    painter.setRenderHint(QPainter::HighQualityAntialiasing);
+    painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(Qt::yellow);
     painter.drawText(rect, Qt::AlignCenter, "Hello, Native Qt Application!!");
 

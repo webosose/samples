@@ -16,9 +16,9 @@
 
 #include "MyOpenGLWindow.h"
 #include "ServiceRequest.h"
-#include <QtGui/QGuiApplication>
-#include <QtGui/QWindow>
-#include <QtGui/QScreen>
+#include <QGuiApplication>
+#include <QWindow>
+#include <QScreen>
 #include <qpa/qplatformnativeinterface.h>
 
 int main(int argc, char **argv)
