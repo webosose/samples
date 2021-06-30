@@ -17,7 +17,7 @@
 TARGET = nativeqt
 
 CONFIG += qt
-QT += core gui-private opengl
+QT += core gui-private
 
 CONFIG += link_pkgconfig
 PKGCONFIG += luna-service2 glib-2.0 pbnjson_cpp PmLogLib

@@ -11,7 +11,7 @@ RDEPENDS_${PN} += "qml-webos-framework qml-webos-bridge"
 WEBOS_VERSION="1.0.0"
 PR = "r0"
 
-inherit webos_qmake6
+inherit webos_qmake5
 inherit webos_submissions
 inherit webos_app
 

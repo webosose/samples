@@ -11,7 +11,7 @@ PR = "r0"
 DEPENDS = "qtbase luna-service2 glib-2.0 libpbnjson"
 
 inherit webos_submissions
-inherit webos_qmake6
+inherit webos_qmake5
 inherit webos_app
 
 OE_QMAKE_PATH_HEADERS = "${OE_QMAKE_PATH_QT_HEADERS}"
