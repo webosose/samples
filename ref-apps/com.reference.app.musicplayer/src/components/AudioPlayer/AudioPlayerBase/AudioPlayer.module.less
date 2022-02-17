@@ -1,0 +1,351 @@
+// Copyright (c) 2021 LG Electronics, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// SPDX-License-Identifier: Apache-2.0
+
+// VideoPlayer.module.less
+//
+@import "../../../styles/variables.less";
+@import "../../../styles/mixins.less";
+@import "../../../styles/skin.less";
+
+.audioPlayer {
+  // Set by counting the IconButtons inside the side components.
+  --liftDistance: 0px;
+
+  overflow: hidden;
+
+  .audio {
+    height: 100%;
+    width: 100%;
+  }
+
+  .preloadVideo {
+    display: none;
+  }
+
+  .overlay {
+    position: absolute;
+    .position(0);
+
+    &::after {
+      content: "";
+      position: absolute;
+      .position(auto, 0, 0, 0);
+      height: 720px;
+      transform-origin: bottom;
+      // Fancier gradient for future reference. Keeping linear-gradient as specified from Enyo.
+      // background-image: radial-gradient(rgba(0, 0, 0, 0) 50%, #000000 100%);
+      // background-size: 170% 200%;
+      // background-position: bottom center;
+    }
+  }
+
+  .back {
+    position: absolute;
+    top: 43px;
+    right: 67px;
+  }
+
+  .fullscreen {
+    .miniFeedback {
+      position: absolute;
+      z-index: 50; // Value assigned as part of the VideoPlayer API so layers may be inserted in-between
+      top: @sand-video-feedback-mini-position-top;
+      left: @sand-video-feedback-mini-position-left;
+      font-family: @sand-video-feedback-mini-font-family;
+      font-weight: @sand-video-feedback-mini-font-weight;
+      font-style: @sand-video-feedback-mini-font-style;
+      font-size: @sand-video-feedback-mini-font-size;
+      padding: 0 @sand-video-feedback-mini-padding-side;
+      line-height: @sand-video-feedback-mini-line-height;
+      border-radius: (@sand-video-feedback-mini-line-height / 2);
+      bottom: auto;
+      pointer-events: none;
+    }
+
+    .bottom {
+      position: absolute;
+      z-index: 100; // Value assigned as part of the VideoPlayer API so layers may be inserted in-between
+      bottom: @sand-video-player-padding-bottom;
+      left: @sand-video-player-padding-side;
+      right: @sand-video-player-padding-side;
+
+      &.lift {
+        transform: translateY(~"calc(var(--liftDistance) * -1)");
+        transition: transform 0.3s linear;
+      }
+
+      &.hidden {
+        pointer-events: none;
+
+        .sliderContainer {
+          position: absolute;
+          width: 100%;
+        }
+      }
+
+      .infoFrame {
+        display: flex;
+        margin-bottom: @sand-spotlight-outset;
+
+        // Title Container
+        .titleFrame {
+          --infoComponentsOffset: 0;
+
+          @badges-present-transition: transform 500ms ease-in-out;
+
+          position: relative;
+          flex-grow: 1;
+          opacity: 1;
+          .margin-start-end(0, @sand-spotlight-outset);
+
+          &.hidden {
+            transition: opacity 1000ms ease-in-out;
+            opacity: 0;
+          }
+
+          // Title
+          .title {
+            position: absolute;
+            bottom: -10px;
+            width: 100%;
+            .sand-text-base(@sand-video-player-title-size);
+            line-height: @sand-heading-title-line-height;
+            transition: @badges-present-transition;
+            .font-kerning;
+
+            &.infoVisible {
+              transform: translateY(~"calc(var(--infoComponentsOffset) * -1)")
+                translateZ(0);
+            }
+
+            .sand-locale-non-latin({
+							// The font-size .times is the same as .title in non-latin locales so no
+							// vertical adjustment is required to align their baselines
+							bottom: 0;
+						});
+          }
+
+          // Badges and title components
+          .infoComponents {
+            vertical-align: super;
+            font-size: 54px;
+
+            &.hidden {
+              opacity: 0;
+            }
+            &.visible {
+              transition: opacity 500ms ease-in-out;
+            }
+
+            > * {
+              display: inline-block;
+              margin: 0 12px;
+            }
+
+            .badgeTextIcon {
+              font-family: @sand-font-family-bold;
+              font-size: @sand-video-player-badge-text-size;
+              text-align: center;
+              white-space: nowrap;
+              display: inline-block;
+            }
+
+            .fontLgIcons {
+              font-family: "LG Icons";
+            }
+          }
+        }
+      }
+
+      .sliderContainer {
+        display: flex;
+        align-items: center;
+
+        :global(.enact-locale-right-to-left) & {
+          direction: ltr;
+        }
+
+        .times {
+          .sand-text-base(@sand-video-player-indicator-text-size);
+          white-space: nowrap;
+          flex: 0 1 auto;
+
+          > * {
+            display: inline-block;
+          }
+
+          .separator {
+            padding: 0 1ex;
+          }
+
+          :global(.enact-locale-right-to-left) & {
+            direction: ltr;
+          }
+        }
+
+        .sliderFrame {
+          @slider-padding-v: (
+            (
+                @sand-video-player-slider-tap-area -
+                  @sand-video-player-slider-height
+              ) / 2
+          );
+          @slider-padding-h: @sand-video-player-slider-knob-size;
+          flex: 1 0 auto;
+
+          &.hidden {
+            will-change: opacity;
+            opacity: 0;
+          }
+
+          .mediaSlider {
+            margin: 0 @sand-video-player-slider-knob-size;
+            padding: @slider-padding-v 0;
+            height: (@sand-video-player-slider-height * 2);
+
+            // Add a tap area that extends to the edges of the screen, to make the slider more accessible
+            &::before {
+              content: "";
+              position: absolute;
+              .position(0, -(@sand-video-player-padding-side));
+            }
+
+            // Grow the knob when the Slider gets spotted
+            .focus({
+							.knob::before {
+								transform: @sand-translate-center scale(0.75);
+								opacity: 1;
+							}
+						});
+
+            .spottable({
+							&.pressed {
+								.knob::before {
+									transform: @sand-translate-center scale(0.75);
+									opacity: 1;
+								}
+							}
+						});
+          }
+
+          // Knob
+          .knob {
+            @activate-transition-function: cubic-bezier(0.15, 0.85, 0.6, 1.65);
+            //@slide-transition-function:    cubic-bezier(0.15, 0.85, 0.53, 1.09);
+
+            //-webkit-transition: -webkit-transform @slide-transition-function 0.2s;
+            //transition:                 transform @slide-transition-function 0.2s;
+
+            &::before {
+              width: (@sand-video-player-slider-knob-size * 2);
+              height: (@sand-video-player-slider-knob-size * 2);
+              border-width: 0;
+              border-radius: @sand-video-player-slider-knob-size;
+              -webkit-transform: @sand-translate-center scale(0.5);
+              transform: @sand-translate-center scale(0.5);
+              opacity: 0;
+              will-change: transform, opacity;
+              -webkit-transition: -webkit-transform
+                  @activate-transition-function 0.2s,
+                opacity ease 0.2s;
+              transition: transform @activate-transition-function 0.2s,
+                opacity ease 0.2s;
+            }
+          }
+
+          &.scrubbing {
+            .knob {
+              display: block;
+            }
+          }
+
+          // Status Indicator
+          .status-indicator {
+            .sand-slider-popup-center {
+              font-family: @sand-font-family;
+              font-size: @sand-video-player-indicator-text-size;
+              line-height: 72px;
+              position: absolute; // Allows flip-h to work
+              margin: 0 60px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .controlsHandleAbove {
+    pointer-events: none;
+    position: absolute;
+    .position(0, 0, auto, 0);
+  }
+
+  // Skin colors
+  .applySkins({
+		.fullscreen {
+			.miniFeedback {
+				background-color: @sand-video-feedback-mini-bg-color;
+				color: @sand-video-feedback-mini-text-color;
+			}
+
+			.bottom {
+				background-color: @sand-video-player-bottom-bg-color;
+
+				.infoFrame {
+					text-shadow: @sand-video-player-title-text-shadow;
+
+					// Title Container
+					.titleFrame {
+						color: @sand-video-player-title-color;
+
+						.redIcon {
+							background-color: @sand-video-player-redicon-bg-color;
+							color: @sand-video-player-redicon-text-color;
+						}
+					}
+				}
+
+				.sliderFrame {
+					.slider {
+						.knob {
+							&::before {
+								background-color: @sand-video-player-slider-knob-color;
+							}
+						}
+					}
+
+					// Status Indicator
+					.status-indicator {
+						.sand-slider-popup-center {
+							color: @sand-video-player-indicator-text-color;
+							text-shadow: @sand-video-player-title-text-shadow;
+
+							.sand-icon {
+								color: inherit;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.overlay {
+			&.high-contrast-scrim::after {
+				background: @sand-video-player-high-contrast-scrim-gradient-color
+			}
+		}
+	});
+}

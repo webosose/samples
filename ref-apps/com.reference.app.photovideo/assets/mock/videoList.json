@@ -1,0 +1,32 @@
+{
+    "errorCode": 0,
+    "returnValue": true,
+    "videoList": {
+       "results": [
+          {
+             "width": 1920,
+             "duration": 205,
+             "file_path": "file:///tmp/usb/sdg/sdg1/video/SampleVideofiles1.mp4",
+             "last_modified_date": "Fri Aug 14 03:55:22 2020 GMT",
+             "thumbnail": "/media/.thumbnail/B5E0-BBB2/1716759322466815.jpg",
+             "height": 1080,
+             "file_size": 264881271,
+             "uri": "msc://B5E0-BBB2/tmp/usb/sdg/sdg1/video/SampleVideofiles1.mp4",
+             "title": "SampleVideofiles1"
+          },
+          {
+             "width": 1920,
+             "duration": 209,
+             "file_path": "file:///tmp/usb/sdh/sdh1/SampleVideofiles2.mp4",
+             "last_modified_date": "Wed Jul 22 09:07:16 2020 GMT",
+             "thumbnail": "/media/.thumbnail/D94A-BE4D/3810749630515133.jpg",
+             "height": 1080,
+             "file_size": 268264916,
+             "uri": "msc://D94A-BE4D/tmp/usb/sdh/sdh1/SampleVideofiles2.mp4",
+             "title": "SampleVideofiles2"
+          }
+       ],
+       "count": 2
+    },
+    "errorText": "No Error"
+ }

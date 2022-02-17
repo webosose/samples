@@ -1,0 +1,101 @@
+// Copyright (c) 2021 LG Electronics, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// SPDX-License-Identifier: Apache-2.0
+
+.photoPlayer {
+  display: flex;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  max-height: 100%;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: black;
+
+  .backButton {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 9%;
+    right: 2%;
+    z-index: 99;
+  }
+
+  .photoHeader {
+    position: absolute;
+    top: 0px;
+    left: 5%;
+    z-index: 2;
+  }
+
+  .photoIndex {
+    position: absolute;
+    top: 1rem;
+    right: 5%;
+    z-index: 2;
+  }
+
+  .photoSlider {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .photoZoom {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  .controlsWrapper {
+    width:100%;
+    min-width:100%;
+    max-width:100%;
+    position: absolute;
+    bottom: 3%;
+    .actionGuideWrapper {
+      font-size: 144px;
+      color: white;
+    }
+  }
+
+  .imagePlayList {
+    width: 100%;
+    height: 5rem;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .show {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    animation: fade 1.5s;
+  }
+
+  .hide {
+    display: none;
+    opacity: 0;
+  }
+
+  @keyframes fade {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+}

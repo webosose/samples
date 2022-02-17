@@ -1,0 +1,335 @@
+//
+// Handy Information
+// http://lesscss.org/features/#mixins-feature-not-outputting-the-mixin
+//
+
+@import "~@enact/spotlight/styles/mixins.less";
+@import "~@enact/ui/styles/mixins.less";
+@import "./variables.less";
+
+// Allows a component to override the existing "disabled" rules and apply its own customized rules.
+.sand-disabled(@rules) when (isruleset(@rules)) {
+	.disabled({
+		opacity: 1; // reset standard disabled rule.
+
+		@rules();
+	});
+}
+
+.sand-taparea(@element-size) when (@sand-smallest-tappable-size > @element-size) {
+	// Take the size of the minimum tappable area, and subtract the element's current size.
+	@_tap-offset: -((@sand-smallest-tappable-size - @element-size) / 2);
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: @_tap-offset;
+		right: @_tap-offset;
+		bottom: @_tap-offset;
+		left: @_tap-offset;
+		border-radius: @sand-button-border-radius;
+	}
+}
+
+.sand-taparea(@element-size) when (@sand-smallest-tappable-size <= @element-size) {
+	// Remove the tappable area if the tap area is smaller than the element's current size.
+	&::before {
+		content: none;
+	}
+}
+
+.sand-item-icon-tap-area-adjust() {
+	&.small > .small-icon-tap-area {
+		left: -@sand-spotlight-outset;
+		right: -@sand-spotlight-outset;
+	}
+}
+
+.sand-word-break() {
+	overflow-wrap: break-word;
+	word-break: keep-all;
+}
+
+// NOTE: Until we are able to automatically remove these JSDoc-style comments, they should remain LESS-commented
+// /**
+//  * Add a margin to your component which includes the standard sandstone spotlight margin on the
+//  * sides and uses the two arguments for margin on the top and bottom respectively.
+//  *
+//  * @param  {Measurement} @t Top margin
+//  * @param  {Measurement} @b Bottom margin
+//  */
+.sand-spotlight-margin(@t; @b) {
+	margin: @t @sand-spotlight-outset @b;
+}
+
+// /**
+//  * Add a margin to your component which includes the standard sandstone spotlight margin on the
+//  * sides and uses the argument for margin on the top and bottom.
+//  *
+//  * @param  {Measurement} @tb Top and bottom margin
+//  */
+.sand-spotlight-margin(@tb) {
+	margin: @tb @sand-spotlight-outset;
+}
+
+// /**
+//  * Add a margin to your component which includes the standard sandstone spotlight margin only on
+//  * the sides.
+//  */
+.sand-spotlight-margin() {
+	margin-left: @sand-spotlight-outset;
+	margin-right: @sand-spotlight-outset;
+}
+
+// /**
+//  * Add a padding to your component which includes the standard sandstone spotlight padding on the
+//  * sides and uses the two arguments for padding on the top and bottom respectively.
+//  *
+//  * @param  {Measurement} @t Top padding
+//  * @param  {Measurement} @b Bottom padding
+//  */
+.sand-spotlight-padding(@t; @b) {
+	padding: @t @sand-spotlight-outset @b;
+}
+
+// /**
+//  * Add a padding to your component which includes the standard sandstone spotlight padding on the
+//  * sides and uses the argument for padding on the top and bottom.
+//  *
+//  * @param  {Measurement} @tb Top and bottom padding
+//  */
+.sand-spotlight-padding(@tb) {
+	padding: @tb @sand-spotlight-outset;
+}
+
+// /**
+//  * Add a padding to your component which includes the standard sandstone spotlight padding only on
+//  * the sides.
+//  */
+.sand-spotlight-padding() {
+	padding-left: @sand-spotlight-outset;
+	padding-right: @sand-spotlight-outset;
+}
+
+//
+// Mixin classes for creating the sandstone text classes
+//
+
+// Text base provides family, weight, and size
+// Accepts 0, 1 or 2 arguments
+// The first argument allows overriding the font size, defaulting to
+// the default body font size, the 2nd argument is used privately by
+// ThemeDecorator to override the target of the rules.
+.sand-text-base(@font-size: @sand-body-font-size; @target: normal) {
+	.sand-font({
+		font-weight: @sand-non-latin-font-weight;
+		font-size: @sand-non-latin-base-font-size;
+		line-height: @sand-non-latin-body-line-height;
+	}, @target);
+	font-weight: normal;
+	font-size: @font-size;
+	line-height: @sand-body-line-height;
+}
+
+//
+// Sandstone Font Applicator
+//
+// When only rules are provided. Default populate the @target argument.
+.sand-font(@nlrules; @target: normal) when (isruleset(@nlrules)) {
+	// content: "Applying .sand-font (rules)";
+	.sand-font(@sand-font-family, @sand-non-latin-font-family, @nlrules, @target);
+}
+// When 0, 1, or 2 strings (font family names) are provided. Default populate the @target argument so the signature stays the same.
+.sand-font(@family: @sand-font-family; @nlfamily: @sand-non-latin-font-family; @target: normal) when (isstring(@family)) and (isstring(@nlfamily)) {
+	// content: "Applying .sand-font 0123";
+	.sand-font(@family, @nlfamily, {}, @target);
+}
+// When exactly 3 or 4 args are provided. Types are assumed because they went through the trouble to provide all 3 required args.
+.sand-font(@family; @nlfamily; @nlrules; @target: normal) when (isruleset(@nlrules)) {
+	// content: "Applying .sand-font 34";
+	font-family: @family;
+
+	.sand-locale-non-latin({
+		font-family: @nlfamily;
+		@nlrules();
+	}, @target);
+}
+
+// Convenience method added to simply set the font size. Please don't use this inside the framework
+// as it will generate a significant amount of selectors and rules that might not be minified.
+// The framework offers more direct and more efficient means of assigning multiple rules at once.
+// This is primarily a convenience for external app developers.
+// Usage:
+//    0 args -> default size for latin is applied to both latin and non-latin
+//    1 arg  -> that size is applied to both latin and non-latin
+//    2 args -> first is applied to latin, second to non-latin
+.sand-font-size(@font-size: @sand-body-font-size; @nlfont-size: @font-size) {
+	font-size: @font-size;
+
+	.sand-locale-non-latin({
+		font-size: @nlfont-size;
+	});
+}
+
+// Generic Non-Latin Font Rule generator
+.sand-locale-non-latin(@nlrules; @target) when (isruleset(@nlrules)) and (@target = self) {
+	&:global(.enact-locale-non-latin) {
+		@nlrules();
+	}
+}
+.sand-locale-non-latin(@nlrules; @target: normal) when (isruleset(@nlrules)) {
+	:global(.enact-locale-non-latin) & {
+		@nlrules();
+	}
+}
+
+//
+// Custom Text Size Mixins
+//
+// 1 arg: Shorthand for just setting the font size in custom-text mode
+.sand-custom-text-size(@latin-size) {
+	.sand-custom-text({
+		font-size: @latin-size;
+	});
+}
+// 2 args: Shorthand for just setting the font size of both latin and non-latin in custom-text mode
+.sand-custom-text-size(@latin-size; @non-latin-size) {
+	.sand-custom-text(
+	{
+		font-size: @latin-size;
+	};
+	{
+		font-size: @non-latin-size;
+	});
+}
+
+// 1 arg: Generic rule applicator, accepts an entire rule-set to add for large text mode
+.sand-custom-text(@lrules) when (isruleset(@lrules)) {
+	&:global(.largeText) {
+		@lrules();
+	}
+}
+// 2 args: Generic rule applicator, accepts 2 entire rule-sets to add both latin and non-latin for large text mode
+.sand-custom-text(@lrules; @nlrules) when (isruleset(@lrules)) and (isruleset(@nlrules)) {
+	&:global(.largeText) {
+		@lrules();
+	}
+	:global(.enact-locale-non-latin) &:global(.largeText) {
+		@nlrules();
+	}
+}
+
+.sand-font-number() {
+	// content: "Applying .sand-font-number";
+	.sand-font(@sand-number-font-family; @sand-number-font-family);
+}
+
+//
+// Text definitions
+//
+
+.sand-alert-title() {
+	.sand-font(@sand-alert-font-family; @sand-non-latin-font-family-light; {
+		line-height: @sand-non-latin-body-line-height;
+	});
+	font-size: @sand-alert-title-font-size;
+	font-weight: @sand-alert-font-weight;
+	line-height: @sand-alert-line-height;
+}
+
+.sand-alert-subtitle() {
+	.sand-font(@sand-alert-font-family; @sand-non-latin-font-family-light);
+	font-size: @sand-alert-subtitle-font-size;
+	font-weight: @sand-alert-font-weight;
+	line-height: @sand-alert-line-height;
+}
+
+.sand-alert-overlay-content() {
+	.sand-font(@sand-alert-font-family; @sand-non-latin-font-family-light; {
+		line-height: @sand-non-latin-body-line-height;
+	});
+	font-weight: @sand-alert-font-weight;
+	font-size: @sand-alert-overlay-font-size;
+	line-height: @sand-alert-line-height;
+	text-align: initial;
+	.sand-word-break();
+	.locale-japanese-line-break();
+}
+
+.sand-notification-content() {
+	.sand-font(@sand-notification-font-family; @sand-non-latin-font-family-light; {
+		line-height: @sand-non-latin-body-line-height;
+	});
+	font-weight: @sand-notification-font-weight;
+	font-style: @sand-notification-font-style;
+	font-size: @sand-notification-font-size;
+	line-height: @sand-body-line-height;
+	text-align: initial;
+	.sand-word-break();
+	.locale-japanese-line-break();
+}
+
+.sand-body-text() {
+	.sand-font(@sand-body-font-family; @sand-non-latin-font-family-light; {
+		font-weight: @sand-non-latin-body-font-weight;
+		font-size: @sand-non-latin-body-font-size;
+		font-style: @sand-non-latin-body-font-style;
+		line-height: @sand-non-latin-body-line-height;
+	});
+	font-weight: @sand-body-font-weight;
+	font-size: @sand-body-font-size;
+	font-style: @sand-body-font-style;
+	line-height: @sand-body-line-height;
+	a:link {color: inherit; text-decoration:none;}
+	a:visited {color: inherit; text-decoration:none;}
+	a:hover {color: inherit; text-decoration:none;}
+	a:active {color: inherit; text-decoration:none;}
+}
+
+.sand-large-button-text() {
+	.sand-font(@sand-button-font-family; @sand-non-latin-button-font-family; {
+		font-size: @sand-non-latin-button-large-font-size;
+		font-style: @sand-non-latin-button-font-style;
+		font-weight: @sand-non-latin-button-font-weight;
+	});
+	font-size: @sand-button-font-size;
+	font-style: @sand-button-font-style;
+	font-weight: @sand-button-font-weight;
+	.font-kerning;
+}
+
+.sand-small-button-text() {
+	.sand-font(@sand-button-small-font-family; @sand-non-latin-button-font-family; {
+		font-size: @sand-non-latin-button-small-font-size;
+		font-style: @sand-non-latin-button-small-font-style;
+		font-weight: @sand-non-latin-button-small-font-weight;
+	});
+	font-size: @sand-button-small-font-size;
+	font-style: @sand-button-small-font-style;
+	font-weight: @sand-button-small-font-weight;
+	.font-kerning;
+}
+
+// Assign rules specifically to RTL locales
+.enact-locale-rtl(@rtlrules) when (isruleset(@rtlrules)) {
+	:global(.enact-locale-right-to-left) & {
+		@rtlrules();
+	}
+}
+// Uses Webkit specific styles to have multi-line ellipsis
+.sand-multi-line-ellipsis(@lines) {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: @lines;
+	-webkit-box-orient: vertical;
+}
+// Add an extension to the .enact-locale-line-height mixin defined in ~@ui which has defaults specific to sandstone.
+//
+// Set line-height for normal and tallglyphs with 0, 1 or 2 arguments
+// Ex:
+//   .enact-locale-line-height();              ->  normal: default; tallglyphs: default;
+//   .enact-locale-line-height(1.4em);         ->  normal: 1.4em; tallglyphs: default;
+//   .enact-locale-line-height(1.4em; 1.6em);  ->  normal: 1.4em; tallglyphs: 1.6em;
+.enact-locale-line-height(@normal: @sand-common-line-height; @tallglyph: @sand-tallglyph-line-height; @target: normal) when (default()) {
+	// .enact-locale-tallglyph(line-height; @normal; @tallglyph; @target);
+}

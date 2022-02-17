@@ -1,0 +1,71 @@
+// Copyright (c) 2021 LG Electronics, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// SPDX-License-Identifier: Apache-2.0
+
+.keypad {
+  display: grid;
+  background-color: rgb(172, 172, 172);
+  font-family: "digital-clock-font";
+  grid-template-columns: repeat(7, 6fr);
+  grid-template-rows: repeat(9, 6fr);
+  grid-column-gap: 5px;
+  grid-row-gap: 10px;
+  border: 5px solid #f93881;
+  border-radius: 12px;
+  padding: 20px;
+  zoom: 110%;
+}
+.calculator {
+  margin: 30px auto;
+  width: 90%;
+  height: 90%;
+}
+
+.common {
+  border: 3px solid #f93881;
+  text-align: right;
+  border-style: solid;
+  border-radius: 12px;
+  grid-column: span 7;
+  padding-top: 12px;
+  font-family: "digital-clock-font";
+}
+
+.hrule {
+  grid-column: span 7;
+  grid-row: 1fr;
+  background-color: rgb(172, 172, 172);
+  border: solid rgb(172, 172, 172);
+  border-style: solid;
+  height: 1px;
+  width: 100%;
+  justify-content: center;
+}
+
+.history {
+  .common;
+  font-size: 2rem;
+  background-color: rgb(153, 153, 153);
+  color: whitesmoke;
+  font-weight: normal;
+  direction: rtl;
+}
+
+.result {
+  .common;
+  font-size: 2.5rem;
+  background-color: seashell;
+  color: black;
+}

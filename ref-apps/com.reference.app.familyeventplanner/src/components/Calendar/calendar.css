@@ -1,0 +1,215 @@
+/* Copyright (c) 2021 LG Electronics, Inc.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+  
+   http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+  
+   SPDX-License-Identifier: Apache-2.0 */
+
+.calendar-container,
+.calendar,
+.calendar-header,
+td,
+tr {
+  padding: 0;
+  margin: 0;
+}
+
+td {
+  width: 14% !important;
+}
+
+.calendar-container {
+  border: 0.08333rem solid skyblue;
+  margin: 2%;
+}
+
+.calendar {
+  background-color: white;
+  color: #00000091;
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.calendar-header {
+  border-bottom: 1px dashed #f93881;
+  font-size: 1.6em;
+  background: #383838;
+}
+
+.calendar-header td {
+  border-spacing: 0;
+  padding-left: 5px;
+}
+
+.day {
+  border: 1px solid #f93881;
+}
+
+.day,
+.empty-slot,
+.week-day {
+  padding: 5px;
+  position: relative;
+  text-align: center;
+  height: 40px;
+}
+
+.day-text {
+  top: 5px;
+  right: 5px;
+  /* position: absolute; */
+}
+
+.week-day {
+  font-size: 0.8em;
+}
+
+.day {
+  font-size: 0.8em;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  width: 14%;
+}
+
+.current-day {
+  background-color: #f93881;
+  border-radius: 2%;
+  color: white;
+}
+.selected-day {
+  background-color: yellow;
+  border-radius: 2%;
+  color: black;
+}
+
+.month-popup {
+  position: absolute;
+  padding: 5px;
+  background: white;
+  border: 2px solid #f93881;
+}
+
+.month-popup div {
+  padding: 0.3em;
+}
+
+.nav-content {
+  text-align: center;
+}
+
+.nav-month {
+  text-align: right;
+}
+
+.week-day-nav {
+  height: 70px;
+  background: #f93881;
+  color: #ffffff;
+}
+
+.dates-row {
+  height: 130px;
+  width: 100%;
+}
+
+.editor-year {
+  max-width: 3.6em;
+}
+
+.label-month,
+.label-year {
+  font-size: 0.6em;
+}
+
+.label-month {
+  cursor: pointer;
+}
+
+.event-element {
+  background: #f93881;
+  font-size: 18px;
+  height: 20px;
+  width: 250px;
+  color: #ffffff;
+  padding: 0px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.current-day .event-element {
+  background: #ffffff;
+  color: #f93881;
+}
+
+.more-event-element {
+  background: #383838 !important;
+  font-size: 18px;
+  height: 20px;
+  width: 100%;
+  color: #ffffff;
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.more-event-element > label {
+  font-size: 18px;
+}
+
+.more-event-element > div > div {
+  padding: 0px !important;
+  font-size: 30px;
+}
+
+.more-event-icon {
+  margin: 0px;
+  font-size: 1rem;
+  width: 0px;
+  height: 0px;
+}
+
+.event-input {
+  margin: 15px 0px;
+}
+.event-input Input {
+  font-size: 30px !important;
+}
+
+.event-input-internal {
+  width: 50%;
+  padding: 20px;
+  margin: 15px;
+  font-size: 10px !important;
+}
+
+.photo-list {
+  height: 170px;
+  padding: 20px;
+}
+
+.create-new-btn {
+  right: 50px;
+  position: absolute;
+  margin-top: 5px;
+  bottom: 15px;
+}
+.dialog-popup {
+  height: 80%;
+  width: 80%;
+  position: relative;
+  margin: 0 auto;
+  background-color: rgba(228, 231, 233, 6.95) !important;
+}

@@ -1,0 +1,20 @@
+# @@@LICENSE
+#
+# Copyright (c) 2021 LG Electronics, Inc.
+#
+# LICENSE@@@
+# A service which enables apps to execute flow based rules in node-red runtime
+
+[Unit]
+Description=webos - "%n"
+Requires=default-webos.target
+After=default-webos.target
+
+[Service]
+Type=simple
+OOMScoreAdjust=1000
+ExecStart=/usr/bin/run-js-service -k -g -n /usr/palm/services/voiceui
+Restart=on-failure
+
+[Install]
+WantedBy=default-webos.target

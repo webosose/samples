@@ -1,0 +1,15 @@
+{
+    "name": "node-red-contrib-tictactoe-ai",
+    "version": "0.0.1",
+    "description": "A node to handle tic tac toe game",
+    "main": "tictactoe-ai.js",
+    "license": "Apache 2.0",
+    "node-red": {
+        "nodes": {
+            "tictactoe-ai": "tictactoe-ai.js"
+        }
+    },
+    "dependencies": {
+        "tic-tac-toe-ai-engine": "^1.0.9"
+    }
+}

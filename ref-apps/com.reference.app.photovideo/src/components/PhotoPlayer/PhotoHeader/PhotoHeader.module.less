@@ -1,0 +1,133 @@
+// Copyright (c) 2021 LG Electronics, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// SPDX-License-Identifier: Apache-2.0
+
+/* PhotoHeader */
+
+.fileItem {
+ background-size: cover;
+ background-repeat: no-repeat;
+
+ display: inline-block;
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ padding: 0;
+ box-sizing: border-box;
+ border: 6px solid transparent;
+ overflow: hidden;
+ color: white;
+
+ &:global(.spottable):focus>div>div {
+  background-color: rgba(0, 0, 0, 0.6);
+ }
+}
+
+.caption {
+ width: 94%;
+ padding: 188px 10px 10px 10px;
+ text-align: center;
+ font-size: 1rem;
+}
+
+.playerInfoHeader {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    vertical-align: top;
+    width: 100%;
+    left: 81px;
+    height: 177px;
+    overflow: visible;
+    // background-color: rgba(0,0,0,0.78);
+    padding: 10px;
+}
+
+.playerInfoTitle {
+    font-family: "Sandstone";
+    font-size: 1rem;
+    line-height: 64px;
+    color: #ffffff;
+    opacity: 0.8;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    margin: 39px 75px 39px 0;
+}
+
+.playerInfoSubTitle{
+    display: inline-block;
+    position:relative;
+    font-family: 'Moonstone';
+    font-weight: 300;
+    font-size: 66px;
+    color: #ffffff;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    letter-spacing: 0;
+    overflow: visible;
+    margin: 0 30px 0 9px;
+    white-space: nowrap;
+}
+
+.photoviewer-info-detailinfo {
+    display: inline-block;
+    white-space: normal;
+    max-width: 1200px;
+    margin: 0 21px 0 0;
+    opacity: 0.8;
+    overflow: visible;
+    vertical-align: middle;
+}
+
+.hide {
+ -webkit-animation: hideAnimation 2s linear forwards;
+}
+.show {
+ -webkit-animation: showAnimation 2s linear forwards;
+}
+
+:global(.enact-locale-right-to-left) & {
+    .playerInfoHeader {
+        left:0;
+        right:81px;
+    }
+    .playerInfoTitle {
+        margin: 39px 0 9px 75px;
+    }
+    .playerInfoSubTitle{
+        margin: 0 9px 0 30px;
+    }
+}
+
+@-webkit-keyframes hideAnimation {
+ 0% {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+ }
+ 100% {
+  -webkit-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+ }
+}
+
+
+@-webkit-keyframes showAnimation {
+ 0% {
+  -webkit-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+ }
+ 100% {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+ }
+}

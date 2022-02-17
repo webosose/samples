@@ -1,0 +1,258 @@
+<!--
+  Copyright (c) 2021 LG Electronics Inc.
+  SPDX-License-Identifier: LicenseRef-LGE-Proprietary
+  -->
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: sans-serif;
+        }
+
+        .grid-cell {
+            cursor: pointer;
+            background: red;
+            margin: 0.5% !important;
+            height: 150px !important;
+            width: 150px !important;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 4em !important;
+        }
+
+        .margin-0 {
+            margin: 0px !important;
+        }
+
+        .large-font {
+            font-size: 3.5em;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .box {
+            border: 2px solid white;
+            width: 49%;
+        }
+
+        .box h3 {
+            background: darkred;
+            color: white;
+            padding: 10px;
+        }
+
+        .box p {
+            color: white;
+            padding: 10px;
+        }
+
+        .box {
+            -moz-border-radius-topright: 5px;
+            -moz-border-radius-topleft: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -webkit-border-top-left-radius: 5px;
+        }
+
+        .float-left {
+            float: left;
+        }
+
+        .float-right {
+            float: right;
+        }
+
+        .disable-grid {
+            pointer-events: none;
+            cursor: none;
+        }
+
+        .cell-info {
+            position: absolute;
+            color: black !important;
+        }
+
+        .row-0 {
+            top: 12%;
+        }
+
+        .row-1 {
+            top: 28%;
+        }
+
+        .row-2 {
+            top: 43.5%
+        }
+
+        .col-0 {
+            left: 42.5%;
+        }
+
+        .col-1 {
+            left: 51.5%;
+        }
+
+        .col-2 {
+            left: 60.5%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tictactoe_game">
+        <h1 class="margin-0 large-font">Tic Tac Toe</h1>
+        <p class="margin-0">[DEMO] CIM on WebOS OSE</p>
+        <hr>
+        <form NAME="tic" class="text-center">
+            <INPUT TYPE="button" NAME="0" class="grid-cell" v-bind:value="grid.cell0" onclick="handleInput(event)"> <i
+                class="cell-info row-0 col-0">
+                Cell 0</i>
+            <INPUT TYPE="button" NAME="1" class="grid-cell" v-bind:value="grid.cell1" onClick="handleInput(event)"> <i
+                class="cell-info row-0 col-1">
+                Cell 1</i>
+            <INPUT TYPE="button" NAME="2" class="grid-cell" v-bind:value="grid.cell2" onClick="handleInput(event)"> <i
+                class="cell-info row-0 col-2">
+                Cell 2</i><br />
+            <INPUT TYPE="button" NAME="3" class="grid-cell" v-bind:value="grid.cell3" onClick="handleInput(event)"> <i
+                class="cell-info row-1 col-0">
+                Cell 3</i>
+            <INPUT TYPE="button" NAME="4" class="grid-cell" v-bind:value="grid.cell4" onClick="handleInput(event)"> <i
+                class="cell-info row-1 col-1">
+                Cell 4</i>
+            <INPUT TYPE="button" NAME="5" class="grid-cell" v-bind:value="grid.cell5" onClick="handleInput(event)"> <i
+                class="cell-info row-1 col-2">
+                Cell 5</i><br />
+            <INPUT TYPE="button" NAME="6" class="grid-cell" v-bind:value="grid.cell6" onClick="handleInput(event)"> <i
+                class="cell-info row-2 col-0">
+                Cell 6</i>
+            <INPUT TYPE="button" NAME="7" class="grid-cell" v-bind:value="grid.cell7" onClick="handleInput(event)"> <i
+                class="cell-info row-2 col-1">
+                Cell 7</i>
+            <INPUT TYPE="button" NAME="8" class="grid-cell" v-bind:value="grid.cell8" onClick="handleInput(event)"> <i
+                class="cell-info row-2 col-2">
+                Cell 8</i>
+        </form>
+        <div>
+            <h3>Game status: <span style="color: deepskyblue;">{{game_status}}</span></h3>
+        </div>
+        <hr>
+        <h2 class="">Test data</h2>
+        <div class="box margin-0 float-left">
+            <h3 class="margin-0">Data sent to the flow</h3>
+            <p class="margin-0">{{data_injected}}</p>
+        </div>
+        <div class="box margin-0 float-right">
+            <h3 class="margin-0">Data received from the flow</h3>
+            <p class="margin-0">{{data_published}}</p>
+        </div>
+    </div>
+    <!-- <script type="text/javascript" src="node_modules/tic-tac-toe-ai-engine/index.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#tictactoe_game',
+            data: {
+                grid: {
+                    cell0: "     ",
+                    cell1: "     ",
+                    cell2: "     ",
+                    cell3: "     ",
+                    cell4: "     ",
+                    cell5: "     ",
+                    cell6: "     ",
+                    cell7: "     ",
+                    cell8: "     ",
+                },
+                game_state: new Array(9).fill(''),
+                game_status: "In progress",
+                data_injected: "Sent Data",
+                data_published: "Received Data",
+            }
+        });
+
+        var prepareGridData = function (nextGameState) {
+            let gridObject = {
+                cell0: "",
+                cell1: "",
+                cell2: "",
+                cell3: "",
+                cell4: "",
+                cell5: "",
+                cell6: "",
+                cell7: "",
+                cell8: ""
+            };
+            for (let i = 0, iMax = nextGameState.length; i < iMax; i++) {
+                if (nextGameState[i] === "") {
+                    gridObject["cell" + i] = "     ";
+                } else {
+                    gridObject["cell" + i] = nextGameState[i];
+                }
+            }
+            return gridObject;
+        };
+        var injectBridge = new WebOSServiceBridge();
+        var checkTicTacToeEngine = function (currentGameState) {
+            var url = 'luna://com.webos.service.contextintentmgr/injectDataToWorkflow';
+            var params = JSON.stringify({
+                key: "2ca8301e.8535_5a3cbb17.55aa04",
+                data: '{"currentGameState": ' + JSON.stringify(currentGameState) + '}'
+            });
+            function callback(msg) {
+                app.data_injected = JSON.parse(msg);
+
+            }
+            injectBridge.url = url;
+            injectBridge.onservicecallback = callback;
+            injectBridge.call(url, params);
+        }
+        var getDataBridge = new WebOSServiceBridge();
+        var url = 'luna://com.webos.service.contextintentmgr/getDataFromWorkflow';
+        var params = JSON.stringify({
+            key: "2ca8301e.8535_f1174563.0ecdd8",
+            subscribe: true
+        });
+        function callback(msg) {
+            var inResponse = JSON.parse(msg);
+            if (inResponse.returnValue) {
+                var resultData = inResponse.result.data,
+                    gameData = resultData.payload;
+                app.data_published = JSON.stringify(gameData);
+                app.game_state = gameData.nextBestGameState;
+                app.grid = prepareGridData(gameData.nextBestGameState);
+                let winner = gameData.winner;
+                if (gameData.winner === '' && gameData.depth === 2) {
+                    app.game_status = "It's a Tie";
+                } else if (winner) {
+                    app.game_status = (winner === "O" ? "BOT" : "PLAYER") + " wins";
+                } else {
+                    app.game_status = "In progress";
+                    document.getElementById("tictactoe_game").classList.remove("disable-grid");
+                }
+            } else {
+                app.data_published = JSON.stringify(inResponse);
+            }
+        }
+
+        getDataBridge.url = url;
+        getDataBridge.onservicecallback = callback;
+        getDataBridge.call(url, params);
+
+        var handleInput = function (e) {
+            e.preventDefault();
+            let cell_num = +e.currentTarget.name;
+            app.grid["cell" + cell_num] = "X";
+            app.game_state[cell_num] = "X";
+            checkTicTacToeEngine(app.game_state);
+            app.game_status = "BOT thinking ...";
+            document.getElementById("tictactoe_game").classList.add("disable-grid");
+        }
+    </script>
+</body>
+
+</html>

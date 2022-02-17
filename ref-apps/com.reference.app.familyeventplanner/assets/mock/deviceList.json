@@ -1,0 +1,47 @@
+{
+    "pluginList": [
+       {
+          "deviceList": [
+             {
+                "name": "Ultra",
+                "imageCount": 0,
+                "uri": "msc://B5E0-BBB2",
+                "videoCount": 1,
+                "available": true,
+                "icon": "",
+                "audioCount": 34,
+                "description": "Ultra"
+             },
+             {
+                "name": "Cruzer Blade",
+                "imageCount": 33,
+                "uri": "msc://D94A-BE4D",
+                "videoCount": 7,
+                "available": true,
+                "icon": "",
+                "audioCount": 35,
+                "description": "Cruzer Blade"
+             }
+          ],
+          "active": true,
+          "uri": "msc"
+       },
+       {
+          "deviceList": [
+            {
+               "name": "Media",
+               "imageCount": 0,
+               "uri": "msc://Media/Multimedia",
+               "videoCount": 1,
+               "available": true,
+               "icon": "",
+               "audioCount": 34,
+               "description": "Media"
+            }
+          ],
+          "active": true,
+          "uri": "storage"
+       }
+    ],
+    "returnValue": true
+ }

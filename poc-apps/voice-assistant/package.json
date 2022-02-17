@@ -1,0 +1,15 @@
+{
+  "name": "voiceui",
+  "version": "1.0.0",
+  "description": "voice assistant UI for webosose",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "piyush.asalmol",
+  "license": "Apache 2.0",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs":"0.0.1-security"
+  }
+}

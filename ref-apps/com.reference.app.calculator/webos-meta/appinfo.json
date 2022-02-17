@@ -1,0 +1,16 @@
+{
+  "id": "com.reference.app.calculator",
+  "version": "1.0.2",
+  "vendor": "LGE",
+  "type": "web",
+  "main": "index.html",
+  "title": "Calculator",
+  "icon": "icon.png",
+  "transparent": true,
+  "requiredPermissions": [
+    "mediapipeline.resourcemanagement",
+    "mediapipeline.operation",
+    "session.management",
+    "sleep.management"
+  ]
+}

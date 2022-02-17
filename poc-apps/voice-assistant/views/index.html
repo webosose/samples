@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap2-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap2-toggle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css" />
+    <script src="js/data.js" type="text/javascript"></script>
+    <title>LG Assistant</title>
+</head>
+<body>
+    <div class="lglogo"><center><img src="css/lglogo.jpg" alt="logo"></center></div>
+
+    <div class="container content">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="card">
+                    <div class="card-header"></div>
+                    <div class = "scrollView">
+                    <div class="card-body height3">
+                        <ul class="chat-list">
+                            <li class="in">
+                                <div class="chat-img">
+                                    <img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar1.png">
+                                </div>
+                                <div class="chat-body">
+                                    <div class="chat-message">
+                                        <h5>User</h5>
+                                        <textarea class="Ibox" id="inputTextarea"></textarea>
+                                        <!-- <p id="inputTextarea">Raw denim heard of them tofu master cleanse</p> -->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="out">
+                                <div class="chat-img">
+                                    <img alt="Avtar" src="css/female_icon.png">
+                                </div>
+                                <div class="chat-body">
+                                    <div class="chat-message">
+                                        <h5>LG Assistant</h5>
+                                        <textarea class="Obox" id="outputTextarea"></textarea>
+                                        <!-- <p id="outputTextarea">Next level veard</p> -->
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    </div>
+                    <div class="card-header"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class ="toggle_button"><center>
+                <i id="statusicon" class="fa" style="font-size:40px;color:rgb(39, 236, 32)"></i>
+    </br>
+        <label class="switch">
+            <input type="checkbox" id="togBtn" onclick="readInput();readOutput();readStatus();">
+            <div class="slider round">
+             <!--ADDED HTML -->
+             <span class="on">Stop</span>
+             <span class="off">Start</span>
+             <!--END-->
+            </div>
+           </label>
+        </center>
+        </div>
+
+
+        <script>
+          const button = document.getElementById('togBtn');
+          button.addEventListener('click', function (e) {
+            console.log('button was clicked');
+
+            fetch('/clicked', { method: 'POST' })
+              .then(function (response) {
+                if (response.ok) {
+                  console.log('click was recorded');
+                  return;
+                }
+                throw new Error('Request failed.');
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          });
+        </script>
+
+
+</body>
+</html>

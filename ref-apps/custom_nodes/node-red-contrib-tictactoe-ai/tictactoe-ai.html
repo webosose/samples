@@ -1,0 +1,40 @@
+<!--
+  Copyright (c) 2021 LG Electronics Inc.
+  SPDX-License-Identifier: LicenseRef-LGE-Proprietary
+  -->
+<style>
+    .form-row textarea {
+        width: 75%;
+        height: 100px;
+        border-radius: 3px;
+        resize: none;
+        padding: 10px;
+    }
+</style>
+<script type="text/x-red" data-template-name="tictactoe-ai">
+    <div class="form-row">
+        <label for="node-input-name">
+            <i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+<script type="text/x-red" data-help-name="tictactoe-ai">
+<p style="margin-left: 20px">This node takes in the tic tac toe game state and predicts the next game state</p>
+</script>
+<script type="text/javascript">
+    RED.nodes.registerType('tictactoe-ai', {
+        category: 'LG',
+        color: '#F3B567',
+        defaults: {
+            name: {
+                value: ""
+            }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "hash.png",
+        label: function () {
+            return this.name || "tictactoe-ai";
+        }
+    });
+</script>

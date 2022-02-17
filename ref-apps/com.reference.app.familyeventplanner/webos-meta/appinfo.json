@@ -1,0 +1,23 @@
+{
+  "id": "com.reference.app.familyeventplanner",
+  "version": "1.0.2",
+  "vendor": "LGE",
+  "type": "web",
+  "main": "index.html",
+  "title": "Calendar",
+  "icon": "icon.png",
+  "transparent": true,
+  "requiredPermissions": [
+    "audio.operation",
+    "media.operation",
+    "mediacontroller.operation",
+    "mediaindexer.operation",
+    "mediapipeline.resourcemanagement",
+    "mediapipeline.operation",
+    "session.management",
+    "sleep.management",
+    "physicaldevice.management",
+    "physicaldevice.query",
+    "database.operation"
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "errorCode": 0,
+  "returnValue": true,
+  "errorText": "No Error",
+  "audioList": {
+    "results": [
+      {
+        "last_modified_date": "Wed Jul 22 09:09:38 2020 GMT",
+        "duration": 348,
+        "file_path": "file:///tmp/usb/sdh/sdh1/Sample-OGG-File.ogg",
+        "album": "Ninja Tuna",
+        "genre": "Electronic",
+        "artist": "Mr. Scruff",
+        "title": "Kalimba",
+        "uri": "msc://B5E0-BBB2/tmp/usb/sdg/sdg1/Sample-OGG-File.ogg",
+        "file_size": 6984260,
+        "thumbnail": ""
+      },
+      {
+        "last_modified_date": "Thu Jul 30 06:48:04 2020 GMT",
+        "duration": 10,
+        "file_path": "file:///tmp/usb/sdh/sdh1/tagtest.ID3v2.4.mp3",
+        "album": "Test Album",
+        "genre": "Classical",
+        "artist": "Test Artist",
+        "title": "Test Name",
+        "uri": "msc://D94A-BE4D/tmp/usb/sdh/sdh1/tagtest.ID3v2.4.mp3",
+        "file_size": 184861,
+        "thumbnail": "/media/.thumbnail/D94A-BE4D/9513454098549223.jpg"
+      },
+      {
+        "duration": 205,
+        "file_path": "file:///tmp/usb/sdg/sdg1/audio/SampleAudiofiles1.mp3",
+        "last_modified_date": "Fri Aug 14 03:55:22 2020 GMT",
+        "thumbnail": "/media/.thumbnail/B5E0-BBB2/1716759322466815.jpg",
+        "file_size": 264881271,
+        "uri": "msc://B5E0-BBB2/tmp/usb/sdg/sdg1/audio/SampleAudiofiles1.mp3",
+        "title": "Test Song1",
+        "album": "Test Album",
+        "genre": "Classical",
+        "artist": "Test Artist"
+      },
+      {
+        "duration": 205,
+        "file_path": "file:///tmp/usb/sdg/sdg1/audio/SampleAudiofiles2.mp3",
+        "last_modified_date": "Fri Aug 14 03:55:22 2020 GMT",
+        "thumbnail": "/media/.thumbnail/B5E0-BBB2/1716759322466815.jpg",
+        "file_size": 264881271,
+        "uri": "msc://B5E0-BBB2/tmp/usb/sdg/sdg1/audio/SampleAudiofiles2.mp4",
+        "title": "Test Song2",
+        "album": "Test Album",
+        "genre": "Classical",
+        "artist": "Test Artist"
+      },
+      {
+        "duration": 205,
+        "file_path": "file:///tmp/usb/sdg/sdg1/audio/SampleAudiofiles3.mp3",
+        "last_modified_date": "Fri Aug 14 03:55:22 2020 GMT",
+        "thumbnail": "/media/.thumbnail/B5E0-BBB2/1716759322466815.jpg",
+        "file_size": 264881271,
+        "uri": "msc://B5E0-BBB2/tmp/usb/sdg/sdg1/audio/SampleAudiofiles3.mp4",
+        "title": "Test Song3",
+        "album": "Test Album",
+        "genre": "Classical",
+        "artist": "Test Artist"
+      },
+      {
+        "duration": 209,
+        "file_path": "file:///tmp/usb/sdh/sdh1/SampleAudiofiles4.mp3",
+        "last_modified_date": "Wed Jul 22 09:07:16 2020 GMT",
+        "thumbnail": "/media/.thumbnail/D94A-BE4D/3810749630515133.jpg",
+        "file_size": 268264916,
+        "uri": "msc://D94A-BE4D/tmp/usb/sdh/sdh1/SampleAudiofiles4.mp3",
+        "title": "Test Song4",
+        "album": "Test Album",
+        "genre": "Classical",
+        "artist": "Test Artist"
+      },
+      {
+        "duration": 209,
+        "file_path": "file:///tmp/usb/sdh/sdh1/SampleAudiofiles5.mp3",
+        "last_modified_date": "Wed Jul 22 09:07:16 2020 GMT",
+        "thumbnail": "/media/.thumbnail/D94A-BE4D/3810749630515133.jpg",
+        "file_size": 268264916,
+        "uri": "msc://D94A-BE4D/tmp/usb/sdh/sdh1/SampleAudiofiles5.mp3",
+        "title": "Test Song5",
+        "album": "Test Album",
+        "genre": "Classical",
+        "artist": "Test Artist"
+      },
+      {
+        "duration": 209,
+        "file_path": "file:///tmp/usb/sdh/sdh1/SampleAudiofiles6.mp3",
+        "last_modified_date": "Wed Jul 22 09:07:16 2020 GMT",
+        "thumbnail": "/media/.thumbnail/D94A-BE4D/3810749630515133.jpg",
+        "file_size": 268264916,
+        "uri": "msc://D94A-BE4D/tmp/usb/sdh/sdh1/SampleAudiofiles6.mp3",
+        "title": "Test Song6",
+        "album": "Test Album",
+        "genre": "Classical",
+        "artist": "Test Artist"
+      }
+    ],
+    "count": 8
+  }
+}

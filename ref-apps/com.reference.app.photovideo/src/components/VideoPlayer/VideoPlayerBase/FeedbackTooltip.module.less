@@ -1,0 +1,119 @@
+// Copyright (c) 2021 LG Electronics, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// SPDX-License-Identifier: Apache-2.0
+
+// FeedbackTooltip.module.less
+//
+@import "../../../styles/mixins.less";
+@import "../../../styles/variables.less";
+@import "../../../styles/skin.less";
+
+.feedbackTooltip {
+ position: absolute;
+ bottom: @sand-video-slider-tooltip-position-bottom;
+
+ &.shift {
+  bottom: @sand-video-slider-tooltip-shift-position-bottom;
+ }
+
+ &.hidden {
+  display: none;
+ }
+
+ .thumbnail,
+ .content {
+  pointer-events: none;
+  will-change: transform;
+ }
+
+ .thumbnail {
+  border-width: @sand-video-slider-tooltip-thumbnail-border-width;
+  border-style: solid;
+  border-radius: 0;
+  overflow: hidden;
+  transition: opacity 250ms;
+
+  .image {
+   margin: 0;
+   width: @sand-video-slider-tooltip-thumbnail-width;
+   height: @sand-video-slider-tooltip-thumbnail-height;
+  }
+ }
+
+ &.thumbnailDeactivated {
+  .thumbnail {
+   opacity: @sand-video-slider-tooltip-deactivated-thumbnail-opacity;
+  }
+ }
+
+ .content {
+  .sand-font({
+   font-size: @sand-video-slider-tooltip-font-size;
+   font-weight: @sand-video-slider-tooltip-font-weight;
+  });
+  .sand-font-number();
+  font-size: @sand-video-slider-tooltip-font-size;
+  font-weight: @sand-video-slider-tooltip-font-weight;
+  line-height: @sand-video-slider-tooltip-line-height;
+  white-space: nowrap;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin-bottom: @sand-video-slider-tooltip-margin-bottom;
+ }
+
+ .alignmentContainer {
+  position: relative;
+  right: 50%;
+ }
+
+ .arrowContainer {
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  &.hidden {
+   display: none;
+  }
+
+  .arrow {
+   margin: auto;
+   width: 0;
+   height: 0;
+   border-top: @sand-video-slider-tooltip-arrow-border-top solid;
+   border-right: @sand-video-slider-tooltip-arrow-border-left-right solid;
+   border-left: @sand-video-slider-tooltip-arrow-border-left-right solid;
+  }
+ }
+
+ .applySkins({
+  .thumbnail {
+   border-color: @sand-video-slider-tooltip-thumbnail-border-color;
+  }
+
+  .arrow {
+   border-top-color: @sand-video-slider-tooltip-thumbnail-border-color;
+   border-right-color: transparent;
+   border-left-color: transparent;
+  }
+
+  .content {
+   color: @sand-light-gray;
+   text-shadow: @sand-video-player-title-text-shadow;
+  }
+ });
+}

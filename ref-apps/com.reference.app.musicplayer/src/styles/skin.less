@@ -1,0 +1,22 @@
+
+// skin.less
+//
+
+.applySkins(@componentRules) when (isruleset(@componentRules)) {
+	// Load the color-mixins, which reference variables from the imports below,
+	// and updates dynamically based on which variable-set is loaded.
+	@import "./color-mixins.less";
+
+	&:global(.neutral) {
+		// Load the sandstone neutral rules into this scope
+		@import "./colors.less";
+
+		@componentRules();
+	}
+
+	:global(.enact-a11y-high-contrast) &:global(.neutral.highContrast) {
+		@import "./colors-highcontrast.less";
+
+		@componentRules();
+	}
+}

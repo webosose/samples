@@ -1,0 +1,204 @@
+// color-mixins.less
+//
+// Mixins specifically dependent on theme colors.
+// Shortcuts for easily getting consistent colorization rules onto components.
+//
+
+@import "./mixins.less";
+
+// ---------------------------------------
+// Focus Shadow and background setup
+// ---------------------------------------
+.sand-bg-colors (@bg) {
+	//// Relocate the bg styling to a pseudo-element
+	// &::after {
+		@bg();
+	// }
+}
+
+
+// Establish rules assignment for before focus has happened
+.sand-spotlight-resting-bg-colors (@opacity: 0, @bg: {}, @shadow: {}) {
+	// These lines are really long, and occasionally repeated. Defining here as shorthand.
+	// @transition-opacity: opacity @sand-spotlight-focus-animation-duration ease-out;
+	// @transition-transform: transform @sand-spotlight-focus-animation-duration ease-out;
+	// @transition-filter: filter @sand-spotlight-focus-animation-duration ease-out;
+
+	opacity: @opacity;
+	// transition+: @transition-opacity;
+	// will-change+: opacity;
+
+	// Prep common aspects
+	// @pseudo-element-setup: {
+	// 	content: "";
+	// 	position: absolute;
+	// 	.position(0);
+	// 	border-radius: inherit;
+	// };
+
+	// // Shadow
+	// .sand-shadow-colors({
+	// 	@pseudo-element-setup();
+	// 	background-color: @sand-spotlight-bg-color;
+	// 	opacity: 0;
+
+	// 	// filter+: drop-shadow(@sand-spotlight-focus-shadow);
+	// 	box-shadow: @sand-spotlight-focus-shadow;
+
+	// 	//// Include a transform on the shadow for a better effect
+	// 	// transform+_: scale(0.9, 0.5); // Hard-coded values, not part of the design. This transform is responsible for tucking the shadow up inside the background so it can transition out.
+	// 	// transition+: @transition-opacity, @transition-transform;
+	// 	// will-change+: opacity, transition;
+
+	// 	//// Simple opacity change to the shadow (fade-in)
+	// 	transition+: @transition-opacity;
+	// 	will-change+: opacity;
+	// 	will-change+: box-shadow;
+
+	// 	@shadow();
+	// });
+
+	// Background coloration
+	.sand-bg-colors({
+		// @pseudo-element-setup();
+
+		background-color: @sand-spotlight-bg-color;
+		// transition+: @transition-filter;
+		will-change+: filter;
+
+		@bg();
+		@shadow();
+	});
+}
+
+// Establish rules assignment for before focus has happened
+.sand-spotlight-resting-colors (@opacity: 0) {
+	background-color: @sand-spotlight-bg-color;
+	filter+_: drop-shadow(@sand-spotlight-resting-shadow);
+	opacity: @opacity;
+	transition+:
+		filter @sand-spotlight-focus-animation-duration ease-out,
+		opacity @sand-spotlight-focus-animation-duration ease-out;
+	will-change+: filter, opacity;
+}
+
+// Establish rules assignment for after focus has happened
+.sand-spotlight-focus-colors (@opacity: 1) {
+	background-color: @sand-spotlight-bg-color;
+	filter+_: drop-shadow(@sand-spotlight-focus-shadow);
+	opacity: @opacity;
+}
+
+
+//
+// The following 3 mixins should be used inside the `.sand-disabled()` mixin's ruleset.
+//
+
+// Assign the standard disabled rules
+.sand-disabled-colors () {
+	opacity: @sand-disabled-opacity;
+}
+
+// Assign the standard disabled rules of content to content nodes.
+// This should be used on children of a root component node.
+.sand-disabled-focus-content-colors () {
+	opacity: @sand-disabled-focus-content-opacity;
+}
+
+// Assign the standard disabled rules of backgrounds to bg nodes.
+// This should be used on children of a root component node.
+.sand-disabled-focus-bg-colors () {
+	opacity: @sand-disabled-focus-bg-opacity;
+}
+
+.sand-spotlight-focus-text-colors () {
+	// font-weight: @sand-spotlight-font-weight;
+	color: @sand-spotlight-text-color;
+}
+
+// Establish rules assignment for after focus has happened
+.sand-spotlight-focus-bg-colors (@bg: {}, @shadow: {}) {
+	opacity: 1;
+	.sand-bg-colors({
+		background-color: @sand-spotlight-bg-color;
+		filter+: drop-shadow(@sand-spotlight-focus-shadow);
+		@bg();
+		@shadow();
+	});
+}
+
+//
+// The following 3 mixins should be used inside the `.sand-disabled()` mixin's ruleset.
+//
+
+// Assign the standard disabled rules
+.sand-disabled-colors () {
+	opacity: @sand-disabled-opacity;
+}
+
+.sand-disabled-bg-colors () {
+	opacity: @sand-disabled-bg-opacity;
+}
+
+// Assign the standard disabled rules of content to content nodes.
+// This should be used on children of a root component node.
+.sand-disabled-focus-content-colors () {
+	opacity: @sand-disabled-focus-content-opacity;
+}
+
+// Assign the standard disabled rules of backgrounds to bg nodes.
+// This should be used on children of a root component node.
+.sand-disabled-focus-bg-colors (@bg: {}, @shadow: {}) {
+	opacity: @sand-disabled-focus-bg-opacity;
+
+	.sand-bg-colors({
+		@bg();
+		@shadow();
+	});
+}
+
+// The technique below is special handling for opaque buttons, which have an opaque
+// color defined for the initial background-color. This means we can't use the
+// traditional opacity change to animate the difference. Instead, this smoothly applies
+// (via transition) a series of filters that match the spotlight-focus bg color. The
+// values were manually calculated to perfectly match, taking the resting bg-color and
+// adjusting it to become the focus-bg-color. If either color value changes, these
+// adjustments must be recalculated. This is not automatic. It may be possible to
+// autonomously calculate this in the future...
+// Button single-color mixins
+.sand-button-resting-bg-color () {
+	background-color: @sand-button-bg-color;
+}
+.sand-button-selected-bg-color () {
+	background-color: @sand-button-bg-color;
+	filter+_: saturate(1.5) brightness(0.5); // Simulates #3e454d, the spec color
+}
+.sand-button-focus-bg-color () {
+	background-color: @sand-button-bg-color;
+	filter+_: saturate(0) brightness(1.755); // Simulates @sand-spotlight-bg-color
+}
+
+// Button state mixins
+.sand-button-resting-bg-colors (@bg: {}, @shadow: {}) {
+	.sand-spotlight-resting-bg-colors(@opacity: 0, @bg: {
+		.sand-button-resting-bg-color();
+		will-change+: transform;
+		transition+: transform @sand-button-focus-duration ease-out;
+		@bg();
+	}, @shadow);
+}
+
+.sand-button-selected-colors (@bg: {}, @shadow: {}) {
+	.sand-bg-colors({
+		.sand-button-selected-bg-color();
+		@bg();
+		@shadow();
+	});
+}
+
+.sand-button-focus-bg-colors (@bg: {}, @shadow: {}) {
+	.sand-spotlight-focus-bg-colors(@bg: {
+		.sand-button-focus-bg-color();
+		@bg();
+	}, @shadow);
+}

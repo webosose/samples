@@ -1,0 +1,15 @@
+{
+    "id": "com.reference.app.tictactoe",
+    "version": "1.0.0",
+    "vendor": "LGE",
+    "type": "web",
+    "main": "index.html",
+    "title": "TicTacToe",
+    "icon": "icon.png",
+    "miniicon": "icon.png",
+    "largeIcon": "largeIcon.png",
+    "requiredPermissions": [
+        "contextintent.operation"
+    ],
+    "uiRevision": 2
+}

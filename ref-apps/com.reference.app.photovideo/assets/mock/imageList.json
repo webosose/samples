@@ -1,0 +1,28 @@
+{
+    "errorCode": 0,
+    "returnValue": true,
+    "errorText": "No Error",
+    "imageList": {
+       "results": [
+         {
+            "width": 1024,
+            "last_modified_date": "Fri Aug 14 03:54:08 2020 GMT",
+            "uri": "msc://B5E0-BBB2/tmp/usb/sdg/sdg1/image/SampleImage1.jpg",
+            "title": "SampleImage1",
+            "file_size": 197377,
+            "height": 768,
+            "file_path": "file:///tmp/usb/sdg/sdg1/image/SampleImage1.jpg"
+         },
+         {
+            "width": 1024,
+            "last_modified_date": "Wed Jul 22 09:04:16 2020 GMT",
+            "uri": "msc://D94A-BE4D/tmp/usb/sdh/sdh1/SampleImage2.jpg",
+            "title": "SampleImage2",
+            "file_size": 199429,
+            "height": 768,
+            "file_path": "file:///tmp/usb/sdh/sdh1/SampleImage2.jpg"
+         }
+      ],
+       "count": 2
+    }
+ }

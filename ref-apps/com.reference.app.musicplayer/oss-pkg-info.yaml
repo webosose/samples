@@ -1,0 +1,28 @@
+Open Source Software Package:
+  - name: Axios
+    source: git://github.com/axios/axios
+    license: MIT
+  - name: Cross Env
+    source: git://github.com/kentcdodds/cross-env
+    license: MIT
+  - name: Enact
+    source: https://github.com/enactjs/enact
+    license: Apache-2.0
+  - name: Enact-cli
+    source: https://github.com/enactjs/cli
+    license: Apache-2.0
+  - name: iLib
+    source: git://github.com/iLib-js/iLib
+    license: Apache-2.0
+  - name: Immer
+    source: git://github.com/immerjs/immer
+    license: MIT
+  - name: Nodemon
+    source: git://github.com/remy/nodemon
+    license: MIT
+  - name: React
+    source: git://github.com/facebook/react
+    license: MIT
+  - name: Query String
+    source: git://github.com/sindresorhus/query-string
+    license: MIT

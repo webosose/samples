@@ -1,0 +1,24 @@
+{
+ "id": "com.reference.app.photovideo",
+ "version": "1.0.2",
+ "vendor": "LGE",
+ "type": "web",
+ "main": "index.html",
+ "title": "Photo Video",
+ "icon": "icon.png",
+ "miniicon": "icon-mini.png",
+ "largeIcon": "icon-large.png",
+ "transparent": true,
+ "requiredPermissions": [
+  "audio.operation",
+  "media.operation",
+  "mediacontroller.operation",
+  "mediaindexer.operation",
+  "mediapipeline.resourcemanagement",
+  "mediapipeline.operation",
+  "session.management",
+  "sleep.management",
+  "physicaldevice.management",
+  "physicaldevice.query"
+ ]
+}
