@@ -37,7 +37,7 @@
     "@enact/ui": "^3.2.5",
     "@enact/webos": "^3.5.0",
     "ilib": "^14.2.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.14.0",
