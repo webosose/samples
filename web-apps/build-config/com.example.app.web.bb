@@ -1,4 +1,4 @@
-# Copyright (c) 2020 LG Electronics, Inc.
+# Copyright (c) 2020-2022 LG Electronics, Inc.
 
 SECTION = "webos/apps"
 LICENSE = "Apache-2.0"
@@ -13,4 +13,4 @@ inherit webos_cmake
 inherit webos_app
 inherit webos_arch_indep
 
-FILES_${PN} += "${webos_applicationsdir}"
+FILES:${PN} += "${webos_applicationsdir}"

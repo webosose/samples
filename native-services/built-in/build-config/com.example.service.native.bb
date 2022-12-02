@@ -1,4 +1,4 @@
-# Copyright (c) 2020 LG Electronics, Inc.
+# Copyright (c) 2020-2022 LG Electronics, Inc.
 
 SUMMARY = "Native service sample"
 AUTHOR = "Author's name <Author's e-mail>"
@@ -12,6 +12,7 @@ PR = "r0"
 
 inherit webos_component
 inherit webos_submissions
+inherit webos_daemon
 inherit webos_cmake
 inherit webos_system_bus
 

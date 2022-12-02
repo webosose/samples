@@ -1,4 +1,4 @@
-# Copyright (c) 2020 LG Electronics, Inc.
+# Copyright (c) 2020-2022 LG Electronics, Inc.
 
 SUMMARY = "Native Qt App"
 SECTION = "webos/apps"
@@ -13,7 +13,8 @@ DEPENDS = "qtbase luna-service2 glib-2.0 libpbnjson"
 inherit webos_submissions
 inherit webos_qmake6
 inherit webos_app
+inherit webos_pkgconfig
 
 OE_QMAKE_PATH_HEADERS = "${OE_QMAKE_PATH_QT_HEADERS}"
 
-FILES_${PN} += "${webos_applicationsdir}"
+FILES:${PN} += "${webos_applicationsdir}"

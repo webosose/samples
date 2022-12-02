@@ -1,4 +1,4 @@
-# Copyright (c) 2020 LG Electronics, Inc.
+# Copyright (c) 2020-2022 LG Electronics, Inc.
 
 SUMMARY = "JS Service Sample"
 AUTHOR = "Author's name <Author's e-mail>"
@@ -13,4 +13,4 @@ inherit webos_submissions
 inherit webos_cmake
 inherit webos_system_bus
 
-FILES_${PN} += "${webos_servicesdir}/${PN}/*"
+FILES:${PN} += "${webos_servicesdir}/${PN}/*"
