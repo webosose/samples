@@ -19,7 +19,6 @@
 #include <glib.h>
 #include <stdio.h>
 #include <glib-object.h>
-#include <lunaservice.h>
 #include <luna-service2/lunaservice.h>
 #include <pbnjson.h>
 
