@@ -54,7 +54,7 @@ set(SRC_LIST
     ${CMAKE_SOURCE_DIR}/src/main.c
 )
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/pkg_$ENV{ARCH}/")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/pkg_$ENV{OECORE_TARGET_ARCH}/")
 add_executable(${BIN_NAME} ${SRC_LIST})
 
 # ignore shared library
