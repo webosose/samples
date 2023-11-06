@@ -32,6 +32,10 @@ struct wl_shell_surface *g_pstShellSurface = NULL;
 struct wl_webos_shell *g_pstWebOSShell = NULL;
 struct wl_webos_shell_surface *g_pstWebosShellSurface = NULL;
 struct wl_egl_window *g_pstEglWindow = NULL;
+struct wl_seat *g_pstSeat = NULL;
+struct wl_pointer *g_pstPointer = NULL;
+struct wl_keyboard *g_pstKeyboard = NULL;
+struct wl_touch *g_pstTouch = NULL;
 
 EGLDisplay g_pstEglDisplay = NULL;
 EGLConfig g_pstEglConfig = NULL;
@@ -39,6 +43,147 @@ EGLSurface g_pstEglSurface = NULL;
 EGLContext g_pstEglContext = NULL;
 
 static void finalize();
+
+//mouse event
+static void pointer_handle_enter(void *data, struct wl_pointer *pointer, uint32_t serial, struct wl_surface *surface, wl_fixed_t sx, wl_fixed_t sy)
+{
+    fprintf(stderr, "Pointer entered surface %p at %d %d\n", surface, sx, sy);
+}
+
+static void pointer_handle_leave(void *data, struct wl_pointer *pointer, uint32_t serial, struct wl_surface *surface)
+{
+    fprintf(stderr, "Pointer left surface %p\n", surface);
+}
+
+static void pointer_handle_motion(void *data, struct wl_pointer *pointer, uint32_t time, wl_fixed_t sx, wl_fixed_t sy)
+{
+    fprintf(stderr, "Pointer moved at %d %d\n", sx, sy);
+}
+
+static void pointer_handle_button(void *data, struct wl_pointer *wl_pointer, uint32_t serial, uint32_t time, uint32_t button, uint32_t state)
+{
+    printf("Pointer button\n");
+}
+
+static void pointer_handle_axis(void *data, struct wl_pointer *wl_pointer, uint32_t time, uint32_t axis, wl_fixed_t value)
+{
+    fprintf(stderr,"Pointer handle axis\n");
+}
+
+static const struct wl_pointer_listener pointer_listener = {
+    .enter = pointer_handle_enter,
+    .leave = pointer_handle_leave,
+    .motion = pointer_handle_motion,
+    .button = pointer_handle_button,
+    .axis = pointer_handle_axis
+};
+
+//keyboard event
+static void keyboard_handle_keymap(void *data, struct wl_keyboard *keyboard, uint32_t format, int fd, uint32_t size)
+{
+}
+
+static void keyboard_handle_enter(void *data, struct wl_keyboard *keyboard, uint32_t serial, struct wl_surface *surface, struct wl_array *keys)
+{
+    fprintf(stderr, "Keyboard gained focus\n");
+}
+
+static void keyboard_handle_leave(void *data, struct wl_keyboard *keyboard, uint32_t serial, struct wl_surface *surface)
+{
+    fprintf(stderr, "Keyboard lost focus\n");
+}
+
+static void keyboard_handle_key(void *data, struct wl_keyboard *keyboard, uint32_t serial, uint32_t time, uint32_t key, uint32_t state)
+{
+    fprintf(stderr, "Key is %d state is %d\n", key, state);
+}
+
+static void keyboard_handle_modifiers(void *data, struct wl_keyboard *keyboard, uint32_t serial, uint32_t mods_depressed, uint32_t mods_latched, uint32_t mods_locked, uint32_t group)
+{
+    fprintf(stderr, "Modifiers depressed %d, latched %d, locked %d, group %d\n", mods_depressed, mods_latched, mods_locked, group);
+}
+
+static const struct wl_keyboard_listener keyboard_listener = {
+    .keymap = keyboard_handle_keymap,
+    .enter = keyboard_handle_enter,
+    .leave = keyboard_handle_leave,
+    .key = keyboard_handle_key,
+    .modifiers = keyboard_handle_modifiers
+};
+
+//touch event
+static void touch_handle_down(void *data, struct wl_touch *wl_touch, uint32_t serial, uint32_t time, struct wl_surface *surface, int32_t id, wl_fixed_t x, wl_fixed_t y)
+{
+    fprintf(stderr, "Touch handle down\n");
+}
+
+static void touch_handle_up(void *data, struct wl_touch *wl_touch, uint32_t serial, uint32_t time, int32_t id)
+{
+    fprintf(stderr, "Touch handle up\n");
+}
+
+static void touch_handle_motion(void *data, struct wl_touch *wl_touch, uint32_t time, int32_t id, wl_fixed_t x, wl_fixed_t y)
+{
+    fprintf(stderr, "Touch handle motion at %d %d\n", x, y);
+}
+
+static void touch_handle_frame(void *data, struct wl_touch *wl_touch)
+{
+
+}
+
+static void touch_handle_cancel(void *data, struct wl_touch *wl_touch)
+{
+
+}
+
+static const struct wl_touch_listener touch_listener = {
+    .down = touch_handle_down,
+    .up = touch_handle_up,
+    .motion = touch_handle_motion,
+    .frame = touch_handle_frame,
+    .cancel = touch_handle_cancel
+};
+
+static void seat_handle_capabilities(void *data, struct wl_seat *seat, enum wl_seat_capability caps)
+{
+    if ((caps & WL_SEAT_CAPABILITY_KEYBOARD) && !g_pstKeyboard)
+    {
+	    g_pstKeyboard = wl_seat_get_keyboard(seat);
+	    wl_keyboard_add_listener(g_pstKeyboard, &keyboard_listener, NULL);
+    }
+    else if (!(caps & WL_SEAT_CAPABILITY_KEYBOARD) && g_pstKeyboard)
+    {
+	    wl_keyboard_destroy(g_pstKeyboard);
+	    g_pstKeyboard = NULL;
+    }
+
+    if ((caps & WL_SEAT_CAPABILITY_POINTER) && !g_pstPointer)
+    {
+	    g_pstPointer = wl_seat_get_pointer(seat);
+	    wl_pointer_add_listener(g_pstPointer, &pointer_listener, NULL);
+    }
+    else if (!(caps & WL_SEAT_CAPABILITY_POINTER) && g_pstPointer)
+    {
+	    wl_pointer_destroy(g_pstPointer);
+	    g_pstPointer = NULL;
+    }
+
+    if ((caps & WL_SEAT_CAPABILITY_TOUCH) && !g_pstTouch)
+    {
+	    g_pstTouch = wl_seat_get_touch(seat);
+	    wl_touch_add_listener(g_pstTouch, &touch_listener, NULL);
+    }
+    else if (!(caps & WL_SEAT_CAPABILITY_TOUCH) && g_pstTouch)
+    {
+	    wl_touch_destroy(g_pstTouch);
+	    g_pstTouch = NULL;
+    }
+}
+
+static const struct wl_seat_listener seat_listener = {
+    seat_handle_capabilities
+};
 
 static void registryHandler(void *data, struct wl_registry *registry, uint32_t id, const char *interface, uint32_t version)
 {
@@ -53,6 +198,11 @@ static void registryHandler(void *data, struct wl_registry *registry, uint32_t i
     else  if (strcmp(interface, "wl_webos_shell") == 0)
     {
         g_pstWebOSShell = wl_registry_bind(registry, id, &wl_webos_shell_interface, 1);
+    }
+    else if (strcmp(interface, "wl_seat") == 0)
+    {
+        g_pstSeat = wl_registry_bind(registry, id, &wl_seat_interface, 1);
+        wl_seat_add_listener(g_pstSeat, &seat_listener, NULL);
     }
 }
 
