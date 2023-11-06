@@ -4,7 +4,7 @@ This repository contains code samples that will help you get started with app/se
 
 ## Requirements
 
-* webOS OSE 2.5.0 or higher
+webOS OSE 2.5.0 or higher
 
 ## Organization
 
