@@ -1,13 +1,12 @@
 Summary
 -------
-Simple external native service and dummy web application
+Simple downloadable native service and dummy web application
 
 Description
 -----------
 
-Simple external native service and dummy web application
-Please refer to below link for more details
-"Developing External Native Services" section at [webOS OSE](https://www.webosose.org)
+Simple downloadable native service and dummy web application
+For more details, refer to [Developing Downloadable Native Services | webOS OSE](https://www.webosose.org/docs/tutorials/native-services/developing-downloadable-native-services/).
 
 Dependencies
 ---------------------
@@ -17,12 +16,11 @@ Below are the tools required to build:
 * cmake
 * make
 * pkg-config
-* webOS Native Development Kit at [webOS OSE](https://www.webosose.org)
+* [webOS Native Development Kit | webOS OSE](https://www.webosose.org/docs/guides/setup/setting-up-native-development-kit/)
 
 ## Building
 
-Please make, install and setup the native development kit based on
-"Native Development Kit Setup" section at [webOS OSE](https://www.webosose.org)
+Please build, install, and set up the [webOS Native Development Kit | webOS OSE](https://www.webosose.org/docs/guides/setup/setting-up-native-development-kit/)
 
 Then enter the following commands to build it after changing into the directory
 under which it was downloaded:
@@ -49,7 +47,7 @@ Copyright and License Information
 Unless otherwise specified, all content, including all source code files and
 documentation files in this repository are:
 
-Copyright (c) 2020 LG Electronics, Inc.
+Copyright (c) 2020-2024 LG Electronics, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
