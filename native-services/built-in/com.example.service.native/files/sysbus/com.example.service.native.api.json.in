@@ -1,5 +1,5 @@
 {
-    "com.example.service.native.group":[
+    "examplenativeservice.acgvalue":[
         "com.example.service.native/hello"
     ]
 }

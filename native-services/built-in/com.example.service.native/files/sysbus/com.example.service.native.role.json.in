@@ -1,6 +1,7 @@
 {
     "exeName":"@WEBOS_INSTALL_SBINDIR@/com.example.service.native",
     "type": "regular",
+    "trustLevel": "oem",
     "allowedNames": [
         "com.example.service.native"
     ],

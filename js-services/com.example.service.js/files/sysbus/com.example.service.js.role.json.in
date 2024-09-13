@@ -1,6 +1,7 @@
 {
     "appId":"com.example.service.js",
     "type": "regular",
+    "trustLevel": "oem",
     "allowedNames": [
         "com.example.service.js"
     ],
