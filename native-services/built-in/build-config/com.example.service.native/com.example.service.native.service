@@ -1,4 +1,4 @@
-# Copyright (c) 2020 LG Electronics, Inc.
+# Copyright (c) 2020-2024 LG Electronics, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 [Unit]
-Description=webos - "%n"
+Description=meta-webos - "%n"
 Requires=ls-hubd.service
 After=ls-hubd.service
 
@@ -26,4 +26,3 @@ EnvironmentFile=-/var/systemd/system/env/com.example.service.native.env
 Environment=CHARSET=UTF-8
 ExecStart=/usr/sbin/com.example.service.native
 Restart=on-failure
-

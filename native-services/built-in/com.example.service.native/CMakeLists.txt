@@ -1,4 +1,4 @@
-# Copyright (c) 2020 LG Electronics, Inc.
+# Copyright (c) 2020-2024 LG Electronics, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -57,5 +57,3 @@ target_link_libraries(${PROJECT_NAME} ${EXT_LIBS})
 install(TARGETS ${PROJECT_NAME} DESTINATION ${WEBOS_INSTALL_SBINDIR})
 
 webos_build_system_bus_files()
-webos_build_configured_file(files/systemd/com.example.service.native.service SYSCONFDIR systemd/system)
-

@@ -1,4 +1,4 @@
-# Copyright (c) 2020-2022 LG Electronics, Inc.
+# Copyright (c) 2020-2024 LG Electronics, Inc.
 
 SUMMARY = "Native service sample"
 AUTHOR = "Author's name <Author's e-mail>"
@@ -16,3 +16,7 @@ inherit webos_daemon
 inherit webos_cmake
 inherit webos_system_bus
 
+# systemd configuration move from component repository to meta layer
+FILESEXTRAPATHS:prepend := "${THISDIR}/${BPN}:"
+inherit webos_systemd
+WEBOS_SYSTEMD_SERVICE = "com.example.service.native.service"
