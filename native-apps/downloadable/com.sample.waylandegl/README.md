@@ -29,7 +29,7 @@ under which it was downloaded:
     $ cmake ..
     $ make
 
-Then you can find the results at ../pkg_arm
+Then you can find the results at output
 
 Copyright and License Information
 =================================

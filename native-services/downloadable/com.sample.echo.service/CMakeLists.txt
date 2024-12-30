@@ -1,4 +1,4 @@
-# Copyright (c) 2020 LG Electronics, Inc.
+# Copyright (c) 2020-2024 LG Electronics, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,9 +16,6 @@
 
 cmake_minimum_required(VERSION 2.8.7)
 project(nativeService C)
-
-# set link directory
-#link_directories(${CMAKE_SOURCE_DIR}/pkg_$ENV{ARCH}/lib)
 
 # ---
 # add include files
@@ -54,11 +51,9 @@ set(SRC_LIST
     ${CMAKE_SOURCE_DIR}/src/main.c
 )
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/pkg_$ENV{OECORE_TARGET_ARCH}/")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)
 add_executable(${BIN_NAME} ${SRC_LIST})
 
-# ignore shared library
-set(CMAKE_EXE_LINKER_FLAGS "-Wl,--allow-shlib-undefined")
 set_target_properties(${BIN_NAME} PROPERTIES LINKER_LANGUAGE C)
 
 target_link_libraries (${BIN_NAME}
