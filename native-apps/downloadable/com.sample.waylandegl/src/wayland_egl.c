@@ -1,4 +1,4 @@
-// Copyright (c) 2020 LG Electronics, Inc.
+// Copyright (c) 2020-2025 LG Electronics, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -181,8 +181,14 @@ static void seat_handle_capabilities(void *data, struct wl_seat *seat, enum wl_s
     }
 }
 
+static void seat_name(void *data, struct wl_seat *seat, const char *name)
+{
+    fprintf(stderr, "Seat name changed to: %s\n", name);
+}
+
 static const struct wl_seat_listener seat_listener = {
-    seat_handle_capabilities
+    seat_handle_capabilities,
+    seat_name
 };
 
 static void registryHandler(void *data, struct wl_registry *registry, uint32_t id, const char *interface, uint32_t version)
