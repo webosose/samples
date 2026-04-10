@@ -35,7 +35,7 @@
     "@enact/moonstone": "^3.2.0",
     "@enact/spotlight": "^3.2.0",
     "ilib": "^14.4.0",
-    "mathjs": "^9.4.4",
+    "mathjs": "^15.2.0",
     "prop-types": "^15.7.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
